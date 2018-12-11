@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+        <title>Greetings!</title>
+    </head>
+    <body>
+        <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>        
+        
+        <table border="0">
+            <tr>
+                <td>
+                    <form method="get" th:action="@{/uploadFile}">
+                    <input type="submit" value="Upload Files"/>
+                    </form>
+                </td>
+                
+                <td>
+                    <form method="get" th:action="@{/manageAccount}">
+                    <input type="submit" value="Manage Account"/>
+                    </form>
+                </td>
+                
+                <td>
+                    <form method="get" th:action="@{/manageUsers}">
+                    <input type="submit" value="Manage Users"/>
+                    </form>
+                </td>
+                
+                <td>
+                    <form method="get" th:action="@{/newUser}">
+                    <input type="submit" value="Add User"/>
+                    </form>
+                </td>
+                
+                <td>
+                    <form method="post" th:action="@{/logout}">
+                    <input type="submit" value="Logout"/>    
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+        <title>Create User Account</title>
+    </head>
+    <body>
+        <h1>Create an account below.</h1>
+        <br/>
+        Note:  Usernames ending in "_1" will result in errors; please do not choose usernames of this form.
+            
+        
+        <div th:if="${param.error}">
+            Errors were encountered.
+        </div>  
+        
+        <form th:action="@{/newUser}" th:object="${userToAdd}" method="post">                        
+            <div><label> Username : <input type="text" th:field="*{username}"/> </label></div>            
+            <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username Error</span>            
+            <div><label> Password: <input type="password" th:field="*{password}"/> </label></div>
+            <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</span>
+            <div><label> Confirm Password: <input type="password" th:field="*{passwordConfirm}"/> </label></div>
+            <span th:if="${#fields.hasErrors('passwordConfirm')}" th:errors="*{passwordConfirm}">Password Confirmation Error</span>
+            <div><input type="submit" value="Submit"/></div>
+        </form>       
+        
+    </body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+        <title>Password Change</title>
+    </head>
+    <body>
+        <h1 th:inline="text">[[${#httpServletRequest.remoteUser}]], you may change your password below.</h1>
+        
+        <form th:action="@{/manageAccount}" th:object="${userToUpdate}" method="post">                        
+            <div style="display: none;"><label> Username : <input type="text" th:field="*{username}"/> </label></div>            
+            <span th:if="${#fields.hasErrors('username')}" th:errors="*{username}">Username Error</span>            
+            <div><label> Password: <input type="password" th:field="*{password}"/> </label></div>
+            <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password Error</span>
+            <div><label> Confirm Password: <input type="password" th:field="*{passwordConfirm}"/> </label></div>
+            <span th:if="${#fields.hasErrors('passwordConfirm')}" th:errors="*{passwordConfirm}">Password Confirmation Error</span>
+            <div><input type="submit" value="Submit"/></div>
+        </form>        
+    </body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+        <title>FileCloud</title>
+    </head>
+    <body>
+        <h1>Welcome!</h1>
+        <div id="isAdmin" sec:authorize="hasRole('ADMIN')">            
+            <p><a th:href="@{/helloAdmin}">Click here</a> to navigate to your welcome page.</p>
+        </div>
+        
+        <div id="isUser" sec:authorize="hasRole('USER')">
+            <p><a th:href="@{/helloUser}">Click here</a> to navigate to your welcome page.</p>
+        </div>   
+        
+        <div id="isAnon" sec:authorize="!isFullyAuthenticated()">
+            <p>Registered users can log in below.</p>            
+            <div th:if="${param.error}">
+            Invalid username and password.
+            </div>
+            <div th:if="${param.logout}">
+                You have been logged out.
+            </div>
+            <form th:action="@{/home}" method="post">
+                <div><label> User Name : <input type="text" name="username"/> </label></div>
+                <div><label> Password: <input type="password" name="password"/> </label></div>
+                <div><input type="submit" value="Sign In"/></div>
+            </form>
+        </div>       
+        
+    </body>
+</html>

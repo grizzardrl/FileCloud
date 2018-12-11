@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+    <head>
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        
+        <title>Manage Users</title>
+    </head>
+    <body>
+        <h1 th:inline="text">[[${#httpServletRequest.remoteUser}]], you may manage users below.</h1>
+        
+        <div id="listUsers">     
+            <table>
+            <tr th:each="u : ${listOfUsers}">
+                <td id="userName" th:text="${u.username}"></td>                
+                <td>
+                    <button id="removeButton" th:text="Delete" th:onclick="'deleteFunc(\'' + ${u.username} + '\')'"></button>
+                </td>
+            </tr>
+            </table>
+        </div>
+        
+        <script>           
+            
+            function deleteFunc(userToDelete) {
+                if (userToDelete == "administrator") {
+                    var proceed = confirm("You are about to delete the administrator account!");
+                    if (proceed == false) {
+                        console.log("Cancelled deletion of administrator");
+                        return 1;
+                    }
+                }
+                console.log("Deleting " + userToDelete);
+                var formData = new FormData();
+                formData.append("userToDelete", userToDelete);
+                var xhr = new XMLHttpRequest();
+                xhr.open("DELETE", "/manageUsers");                
+                xhr.onload = function() {
+                    console.log(xhr.responseText);
+                    $( "#listUsers" ).load(window.location.href + " #listUsers" );
+                };               
+                xhr.send(formData);
+            }
+            
+        </script>
+    </body>
+</html>
