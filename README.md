@@ -32,3 +32,6 @@ These steps are current for macOS users as of Dec. 11, 2018.
 4.  Uploads Directory
 	1.  Files uploaded by users are stored in /src/main/resources/uploads/ by default
 	2.  The location of this directory is set in `application.properties`: upload.file.directory=classpath:/uploads/
+
+## Build and Run ##
+1.  Clone this repository or download its zipped version
