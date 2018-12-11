@@ -23,10 +23,10 @@ These steps are current for macOS users as of Dec. 11, 2018.
 		2.  spring.datasource.username=fileCloud
 	5.  Finally, enter the password for the fileCloud role in `application.properties`: spring.datasource.password=CHANGE_ME
 2.  IP Address
-	1.  Retrieve host IP address from System Preferences-->Network IP Address field
+	1.  Retrieve host IP address from System Preferences --> Network --> IP Address field
 	2.  Enter this address at `application.properties`: server.address=CHANGE_ME
 3.  HTTPS Configuration
-	1.  Enter `keytool -genkeypair -alias tomcat -keyalg RSA -keysize 2048 -keystore keystore.jks -validity 3650`
+	1.  In terminal enter `keytool -genkeypair -alias tomcat -keyalg RSA -keysize 2048 -keystore keystore.jks -validity 3650`
 	2.  Enter a password at the two prompts and place it in `application.properties`: server.ssl.key-store-password=CHANGE_ME
 	3.  Copy keystore.p12 to src/main/resources/
 4.  Uploads Directory
@@ -35,3 +35,22 @@ These steps are current for macOS users as of Dec. 11, 2018.
 
 ## Build and Run ##
 1.  Clone this repository or download its zipped version
+2.  Open as a project in Netbeans
+3.  Make necessary changes to `application.properties`
+
+Text in properties file | Updated value
+--- | ---
+server.address=CHANGE_ME | IP Address from section 2 above
+spring.datasource.password=CHANGE_ME | datasource password from section 1 above
+server.ssl.key-store-password=CHANGE_ME | keystore password from section 3 above
+
+4.  Clean and build project with alt + F11
+5.  Use terminal to navigate to /target/
+6.  Enter: `java -jar file-cloud-0.1.0.jar`
+7.  Open a browser and enter: `https://[IP_ADDRESS]:8443`
+	1.  Accept the self-signed certificate if prompted
+8.  Enter administrator and password as username and password
+9.  Click the link to navigate to the directory
+10.  Click "Manage Account"
+12.  Change password for the administrator user
+13.  At this point you are ready to create/delete users and upload/download files
