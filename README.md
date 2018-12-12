@@ -37,7 +37,7 @@ These steps are current for macOS users as of Dec. 11, 2018.
 	1.  Retrieve host IP address from System Preferences --> Network --> IP Address field
 	2.  Enter this address at `application.properties`: server.address=CHANGE_ME
 3.  HTTPS Configuration
-	1.  In terminal enter `keytool -genkeypair -alias tomcat -keyalg RSA -keysize 2048 -keystore keystore.jks -validity 3650`
+	1.  In terminal enter `keytool -genkeypair -alias tomcat -keyalg RSA -keysize 2048 -keystore keystore.p12 -validity 3650`
 	2.  Enter a password at the two prompts and place it in `application.properties`: server.ssl.key-store-password=CHANGE_ME
 	3.  Copy keystore.p12 to src/main/resources/
 4.  Uploads Directory
