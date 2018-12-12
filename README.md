@@ -4,6 +4,17 @@ Browser-based file storage solution using Spring Boot
 This application was my introduction to the Spring Boot framework.  Please let me know if you see areas for improvement.  It runs a tomcat server on the host computer that allows clients to upload and download files up to 200MB from the browser.  It was created using macOS 10.11.6, netbeans version 8.2, java version 1.8.0_191, postgreSQL version 11.1-1, and other software as defined in pom.xml.  It includes an administrator user with default password 'password' who is responsible for creating and deleting user accounts.  The password for the administrator account should be changed as soon as possible.
 Once a user account is created, that user may log in with the password provided by the administrator and change the password for his or her account. 
 
+## Resources Used ##
+As this was my first time using Spring Boot, I found it necessary to consult many resources.  I have tried to list them all here, but if any of the code I present here was influenced by some other resource then I will gladly cite it or remove this repository.  Likewise, if any of the authors presented here have an issue, please contact me.  I do not intend any infringement.
+1.  [User Management author unknown](https://spring.io/guides/gs/securing-web/)
+2.  [https Support](https://www.thomasvitale.com/https-spring-boot-ssl-certificate/) [by Thomas Vitale](https://www.thomasvitale.com/)
+3.  [H2 Configuration](https://springframework.guru/using-the-h2-database-console-in-spring-boot-with-spring-security/) [by John Thompson](https://springframework.guru/about/)
+4.  [Password Hashing](https://hellokoding.com/registration-and-login-example-with-spring-security-spring-boot-spring-data-jpa-hsql-jsp/) [by Giau Ngo](https://hellokoding.com/author/giau/index.html)
+5.  [File Upload/Download Using JPA](https://www.callicoder.com/spring-boot-file-upload-download-jpa-hibernate-mysql-database-example/) [by Rajeev Kumar Singh](https://www.callicoder.com/about/)
+6.  [File Storage and Exception Handling](https://www.callicoder.com/spring-boot-file-upload-download-rest-api-example/) [by Rajeev Kumar Singh](https://www.callicoder.com/about/)
+7.  [JPA/Hibernate One-to-Many Relationship](https://www.callicoder.com/hibernate-spring-boot-jpa-one-to-many-mapping-example/) [by Rajeev Kumar Singh](https://www.callicoder.com/about/)
+8.  [PostgreSQL setup](http://zetcode.com/springboot/postgresql/) [by Jan Bodnar](https://github.com/janbodnar)
+
 ## Preliminary Setup ##
 These steps are current for macOS users as of Dec. 11, 2018.
 1.  [Install JDK 8 Update 191](https://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html)
@@ -50,7 +61,12 @@ server.ssl.key-store-password=CHANGE_ME | keystore password from section 3 above
 7.  Open a browser and enter: `https://[IP_ADDRESS]:8443`
 	1.  Accept the self-signed certificate if prompted
 8.  Enter administrator and password as username and password
-9.  Click the link to navigate to the directory
+9.  Click the link to navigate to the welcome page
 10.  Click "Manage Account"
 12.  Change password for the administrator user
 13.  At this point you are ready to create/delete users and upload/download files
+
+## Additional Notes ##
+1.  If an error about tomcat finding a premature EOF is encountered, be sure that the keystore.p12 generated in step 3 of the necessary configuration was copied to the resources directory.
+2.  No default sites for error or forbidden conditions have been configured.
+3.  Multiple warnings regarding nonexistent relations (e.g. "files" and "users_roles") appear when launching the jar.  These are believed to be caused by a lack of schema definition.  Please reach out if you know the solution.
